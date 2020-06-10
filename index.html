@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <title>Minimal Pomodoro Timer</title>
+    <link rel="stylesheet" href="pomodoro.css"></link>
+    <script type="module" src="pomodoro.js"></script>
+</head>
+<body >
+
+    <div id="pomodoro">
+    </div>
+
+    <form>
+        <button id="startBtn" onclick="startTimer(); return false;">Start Focusing</button>
+        <button id="resetBtn" onclick="resetTimer(); return false;">Reset</button>
+    </form>
+
+    <footer>
+        <p style="font-size: 0.9rem;font-style: italic;">
+            Developed with <3 By Swapnil Shrikhande
+        </p>
+    </footer>
+
+    <script>
+
+        let startTimer = function(){
+            pomodoro.startTimer();
+            disableStart();
+        };
+
+        let resetTimer = function(){
+            pomodoro.resetTimer(); 
+            enableStart();
+        };
+
+        let disableStart = function(){
+            startBtn.setAttribute("disabled",true);
+        };
+
+        let enableStart = function(){
+            startBtn.removeAttribute('disabled');
+        };
+        
+    </script>
+
+    <script type="module">
+        import pomodoro from "./pomodoro.js"
+        //initialize
+        window.onload = function(){
+            window.pomodoro = pomodoro({
+                el : "#pomodoro"
+            });
+        }
+    </script>
+</body>
+</html>
